@@ -7,26 +7,26 @@ export default function App() {
   const [book, setBook] = useState<Book | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/users")
+    fetch("/api/users")
       .then((res) => res.json())
       .then((data) => setUser(data[0]));
 
-  fetch("http://localhost:8080/api/books")
+    fetch("/api/books") 
       .then((res) => res.json())
       .then((data) => setBook(data[0]));
   }, []);
 
   if (!user || !book) return <p>Chargement...</p>;
+
   return (
     <div>
-    <p>
-      Bonjour {user.firstName} {user.lastName} ! Voici ton adresse mail (
-      {user.mail})
-    </p>
-
-    <p>
-      Ton dernier livre lu est {book.title}, écrit par {book.author}
-    </p>
+      <p>
+        Bonjour {user.firstName} {user.lastName} ! Voici ton adresse mail (
+        {user.mail})
+      </p>
+      <p>
+        Ton dernier livre lu est {book.title}, écrit par {book.author}
+      </p>
     </div>
   );
 }

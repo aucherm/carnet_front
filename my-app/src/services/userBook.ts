@@ -1,10 +1,23 @@
 import type { Book } from "../types/Book";
 
-export async function fetchCurrentUser(): Promise<Book> {
+export async function fetchFirstBook(): Promise<Book> {
   const res = await fetch("/api/books");
-  console.log("Status:", res.status);
-  console.log("URL:", res.url);
-  if (!res.ok) throw new Error("Impossible de récupérer les utilisateurs");
-  const books: Book[] = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`HTTP error: ${res.status}`);
+  }
+
+  let books: Book[];
+
+  try {
+    books = await res.json();
+  } catch {
+    throw new Error("Réponse JSON invalide");
+  }
+
+  if (!Array.isArray(books) || books.length === 0) {
+    throw new Error("Aucun livre trouvé");
+  }
+
   return books[0];
 }
