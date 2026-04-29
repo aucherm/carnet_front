@@ -1,4 +1,3 @@
-// src/services/userService.ts
 import type { User } from "../types/User";
 
 export async function fetchCurrentUser(): Promise<User> {
