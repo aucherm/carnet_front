@@ -3,7 +3,7 @@ import type { Book } from "../types/Book";
 import { addBook } from "../services/bookService";
 
 interface Props {
-  onBookAdded: (book: Book) => void;
+  onBookAdded: (book: Book) => void; // ← doit s'appeler exactement onBookAdded
 }
 
 const EMPTY = { title: "", author: "", isbn: "", cover: "" };
