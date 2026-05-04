@@ -5,6 +5,7 @@ import {
   addReadingSheetWithBook,
   fetchReadingSheetById,
   updateReadingSheet,
+  deleteReadingSheet,
 } from "../services/readingSheetService";
 
 const EMPTY = {
@@ -75,6 +76,20 @@ export default function ReadingSheet() {
     }
   };
 
+  const handleDelete = async () => {
+    if (!id) return;
+    if (!window.confirm("Supprimer cette fiche de lecture ?")) return;
+    setLoading(true);
+    try {
+      await deleteReadingSheet(id);
+      navigate("/bookshelf");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Erreur inconnue");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Layout>
       <div className="flex justify-center items-start min-h-[calc(100vh-60px)] p-6">
@@ -130,7 +145,7 @@ export default function ReadingSheet() {
                 </div>
               </div>
 
-              <div className="w-20 h-24 border border-gray-300 rounded bg-gray-50 overflow-hidden flex items-center justify-center flex-shrink-0">
+              <div className="w-20 h-24 border border-gray-300 rounded bg-gray-50 overflow-hidden flex items-center justify-center shrink-0">
                 {form.cover ? (
                   <img src={form.cover} alt="cover" className="w-full h-full object-cover" />
                 ) : (
@@ -192,13 +207,27 @@ export default function ReadingSheet() {
               >
                 {loading ? "..." : isEditing ? "Modifier" : "Ajouter"}
               </button>
-              <button
-                type="button"
-                onClick={() => navigate("/bookshelf")}
-                className="flex-1 border-2 border-gray-800 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors"
-              >
-                Annuler
-              </button>
+
+              {isEditing && (
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  disabled={loading}
+                  className="flex-1 border-2 border-red-600 text-red-600 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-red-50 transition-colors"
+                >
+                  Supprimer
+                </button>
+              )}
+
+              {!isEditing && (
+                <button
+                  type="button"
+                  onClick={() => navigate("/bookshelf")}
+                  className="flex-1 border-2 border-gray-800 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors"
+                >
+                  Annuler
+                </button>
+              )}
             </div>
           </form>
         </div>

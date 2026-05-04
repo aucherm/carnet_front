@@ -61,3 +61,8 @@ export async function updateReadingSheet(
   }
   return res.json();
 }
+
+export async function deleteReadingSheet(id: string): Promise<void> {
+  const res = await fetch(`/api/reading-sheets/${id}`, { method: "DELETE" });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+}

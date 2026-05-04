@@ -59,6 +59,7 @@ export default function AddReadingSheetForm({ userId, onAdded }: Props) {
       <h4>Le livre</h4>
       <input name="title" placeholder="Titre *" value={form.title} onChange={handleChange} required />
       <input name="author" placeholder="Auteur *" value={form.author} onChange={handleChange} required />
+      <input name="isbn" placeholder="ISBN *" value={form.isbn} onChange={handleChange} required />
       <input name="cover" placeholder="URL de couverture" value={form.cover} onChange={handleChange} />
       <select name="status" value={form.status} onChange={handleChange}>
         <option value="to_read">À lire</option>
