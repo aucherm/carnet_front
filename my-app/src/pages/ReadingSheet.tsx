@@ -135,7 +135,7 @@ export default function ReadingSheet() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-gray-600 mb-1 block">Genre / ISBN</label>
+                  <label className="text-xs text-gray-600 mb-1 block">ISBN</label>
                   <input
                     name="isbn"
                     value={form.isbn}
@@ -153,14 +153,6 @@ export default function ReadingSheet() {
                 )}
               </div>
             </div>
-
-            <input
-              name="cover"
-              value={form.cover}
-              onChange={handleChange}
-              placeholder="URL de couverture"
-              className="w-full border border-gray-300 rounded px-2 py-1 text-sm mb-3 focus:outline-none focus:border-gray-600"
-            />
 
             <div className="flex gap-1 mb-3">
               {[1, 2, 3, 4, 5].map((star) => (

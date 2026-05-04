@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Book } from "../types/Book";
 import { updateBook } from "../services/bookService";
+import BookField from "./BookFiels";
 
 interface Props {
   book: Book;
@@ -15,6 +16,7 @@ export default function EditBookForm({ book, onUpdated, onCancel }: Props) {
     isbn: book.isbn,
     cover: book.cover ?? "",
   });
+
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -25,6 +27,7 @@ export default function EditBookForm({ book, onUpdated, onCancel }: Props) {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
     try {
       const updated = await updateBook(book.idBook, form);
       onUpdated(updated);
@@ -36,24 +39,36 @@ export default function EditBookForm({ book, onUpdated, onCancel }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 400 }}>
-      <h3>Modifier le livre</h3>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <form className="flex flex-col gap-2 max-w-sm" onSubmit={handleSubmit}>
+      <h3 className="font-bold">Modifier le livre</h3>
+
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+
       {(["title", "author", "isbn", "cover"] as const).map((field) => (
-        <input
+        <BookField
           key={field}
           name={field}
-          placeholder={field}
+          label={field}
           value={form[field]}
           onChange={handleChange}
           required={field !== "cover"}
         />
       ))}
-      <div style={{ display: "flex", gap: 8 }}>
-        <button type="submit" disabled={loading}>
+
+      <div className="flex gap-2 mt-2">
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-black text-white rounded px-3 py-1"
+        >
           {loading ? "Sauvegarde..." : "Sauvegarder"}
         </button>
-        <button type="button" onClick={onCancel}>
+
+        <button
+          type="button"
+          onClick={onCancel}
+          className="border border-gray-400 rounded px-3 py-1"
+        >
           Annuler
         </button>
       </div>
