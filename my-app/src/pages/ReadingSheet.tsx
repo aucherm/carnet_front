@@ -54,7 +54,9 @@ export default function ReadingSheet() {
   }, [id]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,7 +68,10 @@ export default function ReadingSheet() {
       if (isEditing && id) {
         await updateReadingSheet(id, { ...form, grade: form.grade || null });
       } else {
-        await addReadingSheetWithBook(userId!, { ...form, grade: form.grade || null });
+        await addReadingSheetWithBook(userId!, {
+          ...form,
+          grade: form.grade || null,
+        });
       }
       navigate("/bookshelf");
     } catch (err: unknown) {
@@ -125,7 +130,9 @@ export default function ReadingSheet() {
             <div className="flex gap-3 mb-1">
               <div className="flex-1 flex flex-col gap-3">
                 <div>
-                  <label className="text-xs text-gray-600 mb-1 block">Auteur.ice</label>
+                  <label className="text-xs text-gray-600 mb-1 block">
+                    Auteur.ice
+                  </label>
                   <input
                     name="author"
                     value={form.author}
@@ -135,7 +142,9 @@ export default function ReadingSheet() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-gray-600 mb-1 block">ISBN</label>
+                  <label className="text-xs text-gray-600 mb-1 block">
+                    ISBN
+                  </label>
                   <input
                     name="isbn"
                     value={form.isbn}
@@ -147,11 +156,31 @@ export default function ReadingSheet() {
 
               <div className="w-20 h-24 border border-gray-300 rounded bg-gray-50 overflow-hidden flex items-center justify-center shrink-0">
                 {form.cover ? (
-                  <img src={form.cover} alt="cover" className="w-full h-full object-cover" />
+                  <img
+                    src={form.cover}
+                    alt="cover"
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                  <span className="text-xs text-gray-400 text-center px-1">Cover</span>
+                  <span className="text-xs text-gray-400 text-center px-1">
+                    Cover
+                  </span>
                 )}
               </div>
+            </div>
+
+            <div className="mb-3">
+              <label className="text-xs text-gray-600 mb-1 block">Statut</label>
+              <select
+                name="status"
+                value={form.status}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
+              >
+                <option value="to_read">À lire</option>
+                <option value="reading">En cours</option>
+                <option value="finished">Terminé</option>
+              </select>
             </div>
 
             <div className="flex gap-1 mb-3">
@@ -181,7 +210,9 @@ export default function ReadingSheet() {
             </div>
 
             <div className="mb-4">
-              <label className="text-xs text-gray-600 mb-1 block">Citation.s</label>
+              <label className="text-xs text-gray-600 mb-1 block">
+                Citation.s
+              </label>
               <textarea
                 name="quote"
                 value={form.quote}
