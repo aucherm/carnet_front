@@ -1,1 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --color-orange: #FFD6BA;
+    --color-white: #FAF9F9;
+    --color-mint: #E2F3EF;
+    --color-green: #89B0AE;
+    --color-grey: #2C2F3A;
+
+    --font-heading: Amatic SC, sans-serif;
+}

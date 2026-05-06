@@ -15,16 +15,16 @@ export default function Layout({ children }: Props) {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-white text-black">
       {/* Navbar */}
-      <nav className="flex justify-around py-4 px-6 border-b border-gray-700">
+      <nav className="hidden md:flex justify-around py-4 px-6 border-b border-gray-700 ">
         {LINKS.map((link) => (
           <button
             key={link.path}
             onClick={() => navigate(link.path)}
             className={`text-xs tracking-widest uppercase font-semibold transition-colors ${
               location.pathname === link.path
-                ? "text-white"
+                ? "text-black"
                 : "text-gray-500 hover:text-gray-300"
             }`}
           >

@@ -7,6 +7,7 @@ import {
   updateReadingSheet,
   deleteReadingSheet,
 } from "../services/readingSheetService";
+import BottomNav from "../components/BottomNav";
 
 const EMPTY = {
   title: "",
@@ -97,22 +98,14 @@ export default function ReadingSheet() {
 
   return (
     <Layout>
-      <div className="flex justify-center items-start min-h-[calc(100vh-60px)] p-6">
-        <div className="bg-white text-gray-900 rounded-3xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
+      <div className="flex justify-center items-center py-6">
+        <div className="bg-mint text-gray-900 rounded-xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
           <div className="flex justify-between items-center px-5 pt-5">
-            <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
-              <span className="text-white text-lg">📖</span>
-            </div>
-            <button
-              onClick={() => navigate("/bookshelf")}
-              className="text-gray-800 text-2xl hover:text-gray-600"
-            >
-              ➜
-            </button>
+
           </div>
 
           <form onSubmit={handleSubmit} className="px-5 pb-6 mt-4">
-            <h2 className="text-center font-black tracking-widest uppercase text-lg mb-5">
+            <h2 className="text-center font-heading font-black tracking-widest uppercase text-2xl mb-5">
               {form.title || "Titre"}
             </h2>
 
@@ -124,7 +117,7 @@ export default function ReadingSheet() {
               onChange={handleChange}
               required
               placeholder="Titre du livre *"
-              className="w-full border border-gray-300 rounded px-2 py-1 text-sm mb-3 focus:outline-none focus:border-gray-600"
+              className="bg-white w-full border border-black rounded px-2 py-1 text-sm mb-3 focus:outline-none focus:border-gray-600"
             />
 
             <div className="flex gap-3 mb-1">
@@ -138,7 +131,7 @@ export default function ReadingSheet() {
                     value={form.author}
                     onChange={handleChange}
                     required
-                    className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
+                    className="bg-white w-full border border-black rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
                   />
                 </div>
                 <div>
@@ -149,12 +142,12 @@ export default function ReadingSheet() {
                     name="isbn"
                     value={form.isbn}
                     onChange={handleChange}
-                    className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
+                    className="bg-white w-full border border-black rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
                   />
                 </div>
               </div>
 
-              <div className="w-20 h-24 border border-gray-300 rounded bg-gray-50 overflow-hidden flex items-center justify-center shrink-0">
+              <div className="w-22 h-30 border border-black rounded bg-gray-50 overflow-hidden flex items-center justify-center shrink-0">
                 {form.cover ? (
                   <img
                     src={form.cover}
@@ -175,7 +168,7 @@ export default function ReadingSheet() {
                 name="status"
                 value={form.status}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
+                className="bg-white w-full border border-black rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
               >
                 <option value="to_read">À lire</option>
                 <option value="reading">En cours</option>
@@ -205,7 +198,7 @@ export default function ReadingSheet() {
                 value={form.review}
                 onChange={handleChange}
                 rows={4}
-                className="w-full border border-gray-300 rounded px-2 py-1 text-sm resize-none focus:outline-none focus:border-gray-600"
+                className="bg-white w-full border border-black rounded px-2 py-1 text-sm resize-none focus:outline-none focus:border-gray-600"
               />
             </div>
 
@@ -218,7 +211,7 @@ export default function ReadingSheet() {
                 value={form.quote}
                 onChange={handleChange}
                 rows={3}
-                className="w-full border border-gray-300 rounded px-2 py-1 text-sm resize-none focus:outline-none focus:border-gray-600"
+                className="bg-white w-full border border-black rounded px-2 py-1 text-sm resize-none focus:outline-none focus:border-gray-600"
               />
             </div>
 
@@ -226,7 +219,7 @@ export default function ReadingSheet() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 border-2 border-gray-800 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors"
+                className="bg-white flex-1 border-2 border-gray-800 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-orange transition-colors"
               >
                 {loading ? "..." : isEditing ? "Modifier" : "Ajouter"}
               </button>
@@ -236,7 +229,7 @@ export default function ReadingSheet() {
                   type="button"
                   onClick={handleDelete}
                   disabled={loading}
-                  className="flex-1 border-2 border-red-600 text-red-600 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-red-50 transition-colors"
+                  className="bg-white flex-1 border-2 border-green text-green rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-orange transition-colors"
                 >
                   Supprimer
                 </button>
@@ -246,7 +239,7 @@ export default function ReadingSheet() {
                 <button
                   type="button"
                   onClick={() => navigate("/bookshelf")}
-                  className="flex-1 border-2 border-gray-800 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors"
+                  className="bg-white flex-1 border-2 border-gray-800 rounded-full py-2 text-xs font-black uppercase tracking-widest hover:bg-orange transition-colors"
                 >
                   Annuler
                 </button>
@@ -255,6 +248,7 @@ export default function ReadingSheet() {
           </form>
         </div>
       </div>
+      <BottomNav />
     </Layout>
   );
 }

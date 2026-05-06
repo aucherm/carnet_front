@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import BookCard from "../components/BookCard";
+import BottomNav from "../components/BottomNav";
 import type { ReadingSheet } from "../types/ReadingSheet";
 import { fetchReadingSheets } from "../services/readingSheetService";
 
@@ -19,20 +20,12 @@ export default function BookShelf() {
   return (
     <Layout>
       <div className="flex justify-center items-start min-h-[calc(100vh-60px)] p-6">
-        <div className="bg-white text-gray-900 rounded-3xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
+        <div className="bg-white text-gray-900 rounded-3xl ">
           <div className="flex justify-between items-center px-5 pt-5">
-            <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
-              <span className="text-white text-lg">📖</span>
-            </div>
-            <button
-              onClick={() => navigate("/reading-sheet")}
-              className="text-gray-800 text-2xl hover:text-gray-600"
-            >
-              ➜
-            </button>
+        
           </div>
 
-          <h2 className="text-center font-black tracking-widest uppercase text-xl mt-6 mb-6">
+          <h2 className="font-heading text-center font-black tracking-widest uppercase text-xl mt-6 mb-6">
             Ma Bibliothèque
           </h2>
 
@@ -61,13 +54,14 @@ export default function BookShelf() {
 
             <button
               onClick={() => navigate("/reading-sheet")}
-              className="w-full mt-6 border-2 border-gray-800 rounded-full py-2 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition-colors"
+              className="w-full mt-6 border-2 border-gray-800 rounded-full py-2 text-sm font-bold uppercase tracking-wider hover:bg-mint transition-colors"
             >
               + Ajouter une fiche
             </button>
           </div>
         </div>
       </div>
+      <BottomNav/>
     </Layout>
   );
 }
