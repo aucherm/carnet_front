@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import BookCard from "../components/BookCard";
 import BottomNav from "../components/BottomNav";
+import Logo from "../components/Logo";
 import type { ReadingSheet } from "../types/ReadingSheet";
 import { fetchReadingSheets } from "../services/readingSheetService";
 
@@ -19,13 +20,14 @@ export default function BookShelf() {
 
   return (
     <Layout>
-      <div className="flex justify-center items-start min-h-[calc(100vh-60px)] p-6">
+      <Logo />
+      <div className="flex justify-center">
         <div className="bg-white text-gray-900 rounded-3xl ">
-          <div className="flex justify-between items-center px-5 pt-5">
+          <div className="flex">
         
           </div>
 
-          <h2 className="font-heading text-center font-black tracking-widest uppercase text-xl mt-6 mb-6">
+          <h2 className="font-heading text-center font-black tracking-widest uppercase text-4xl mt-6 mb-6">
             Ma Bibliothèque
           </h2>
 

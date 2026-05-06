@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import BottomNav from "../components/BottomNav";
+import Logo from "../components/Logo";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
     <Layout>
+      <Logo />
       <div className="flex justify-center min-h-[calc(100vh-60px)] p-6">
         <div className="bg-white text-gray-900 rounded-3xl  w-full ">
           {/* Header */}
-          <div className="flex justify-between items-center px-5 pt-5"></div>
+          <div className="flex justify-between items-center px-5"></div>
 
           {/* Illustration */}
           <div className="flex justify-center">
@@ -23,9 +25,9 @@ export default function Home() {
           </div>
 
           {/* Texte */}
-          <div className="px-8 pb-10 text-center">
-            <h1 className="text-2xl font-black mb-4">Hello !</h1>
-            <p className="text-l text-gray-600 leading-relaxed">
+          <div className="px-6 pb-10 text-center">
+            <h1 className="text-3xl font-black mb-4">Hello !</h1>
+            <p className="text-xl text-gray-600 leading-relaxed">
               Un livre ouvert, c'est un monde de plus qui s'offre à toi. Plonge
               dans tes lectures, note tes ressentis, et laisse ton carnet
               raconter ton histoire.
