@@ -101,25 +101,19 @@ export default function ReadingSheet() {
     <Layout>
       <Logo />
       <div className="flex justify-center items-center py-6">
-        <div className="bg-mint text-gray-900 rounded-xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
-          <div className="flex justify-between items-center px-5 pt-5">
-
-          </div>
+        <div className="bg-mint rounded-xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
+          <div className="flex justify-between items-center px-5 pt-5"></div>
 
           <form onSubmit={handleSubmit} className="px-5 pb-6 mt-4">
-            <h2 className="text-center font-heading font-black tracking-widest uppercase text-2xl mb-5">
-              {form.title || "Titre"}
-            </h2>
-
-            {error && <p className="text-red-500 text-xs mb-3">{error}</p>}
-
+         
+                     {error && <p className="text-red-500 text-xs mb-3">{error}</p>}
             <input
               name="title"
               value={form.title}
               onChange={handleChange}
               required
               placeholder="Titre du livre *"
-              className="bg-white w-full border border-black rounded px-2 py-1 text-sm mb-3 focus:outline-none focus:border-gray-600"
+              className="w-full text-center font-black font-heading tracking-widest uppercase text-2xl mb-5 "
             />
 
             <div className="flex gap-3 mb-1">
