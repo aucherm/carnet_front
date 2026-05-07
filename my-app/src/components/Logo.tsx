@@ -4,7 +4,7 @@ export default function Logo() {
       <img
         src="/logo.png"
         alt="logo"
-        className="object-contain w-[100px] h-[100px] md:w-[60px] md:h-[60px]"
+        className="object-contain w-25 h-25 md:w-15 md:h-15"
       />
     </div>
   );
