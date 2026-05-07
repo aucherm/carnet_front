@@ -11,7 +11,9 @@ export default function Home() {
     
     <Layout>
       <NavBar></NavBar>
+      <div className="md:hidden">
       <Logo />
+      </div>
       <div className="flex justify-center min-h-[calc(100vh-60px)] p-6 md:flex-col">
         <div className="bg-white text-gray-900 rounded-3xl  w-full ">
           {/* Header */}

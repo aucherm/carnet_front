@@ -9,6 +9,7 @@ import {
 } from "../services/readingSheetService";
 import BottomNav from "../components/BottomNav";
 import Logo from "../components/Logo";
+import NavBar from "../components/NavBar";
 
 const EMPTY = {
   title: "",
@@ -99,7 +100,10 @@ export default function ReadingSheet() {
 
   return (
     <Layout>
-      <Logo />
+       <NavBar></NavBar>
+            <div className="md:hidden">
+            <Logo />
+            </div>
       <div className="flex justify-center items-center py-6">
         <div className="bg-mint rounded-xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
           <div className="flex justify-between items-center px-5 pt-5"></div>

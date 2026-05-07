@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import BookCard from "../components/BookCard";
 import BottomNav from "../components/BottomNav";
 import Logo from "../components/Logo";
+import NavBar from "../components/NavBar";
 import type { ReadingSheet } from "../types/ReadingSheet";
 import { fetchReadingSheets } from "../services/readingSheetService";
 
@@ -20,7 +21,10 @@ export default function BookShelf() {
 
   return (
     <Layout>
-      <Logo />
+    <NavBar></NavBar>
+         <div className="md:hidden">
+         <Logo />
+         </div>
       <div className="flex justify-center">
         <div className="bg-white text-gray-900 rounded-3xl ">
           <div className="flex"></div>
