@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <Layout>
       <Logo />
-      <div className="flex justify-center min-h-[calc(100vh-60px)] p-6">
+      <div className="flex justify-center min-h-[calc(100vh-60px)] p-6 md:flex-col">
         <div className="bg-white text-gray-900 rounded-3xl  w-full ">
           {/* Header */}
           <div className="flex justify-between items-center px-5"></div>
@@ -26,8 +26,8 @@ export default function Home() {
 
           {/* Texte */}
           <div className="px-6 pb-10 text-center">
-            <h1 className="text-3xl font-black mb-4">Hello !</h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <h1 className="text-3xl font-black mb-4 ">Hello !</h1>
+            <p className="text-xl text-gray-600 leading-relaxed md:max-w-md mx-auto">
               Un livre ouvert, c'est un monde de plus qui s'offre à toi. Plonge
               dans tes lectures, note tes ressentis, et laisse ton carnet
               raconter ton histoire.

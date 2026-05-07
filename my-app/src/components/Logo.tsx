@@ -1,7 +1,7 @@
 export default function Logo() {
 
   return (
-    <div className="flex flex-start ">
+    <div className="flex flex-start md:hidden ">
             <img
               src="/logo.png"
               alt="logo"
