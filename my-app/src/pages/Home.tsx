@@ -2,12 +2,15 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import BottomNav from "../components/BottomNav";
 import Logo from "../components/Logo";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
+    
     <Layout>
+      <NavBar></NavBar>
       <Logo />
       <div className="flex justify-center min-h-[calc(100vh-60px)] p-6 md:flex-col">
         <div className="bg-white text-gray-900 rounded-3xl  w-full ">
@@ -35,7 +38,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      
       <BottomNav />
     </Layout>
+    
   );
 }
