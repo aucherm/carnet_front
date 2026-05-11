@@ -1,11 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import BottomNav from "../components/BottomNav";
 import Logo from "../components/Logo";
 import NavBar from "../components/NavBar";
 
 export default function Home() {
-  const navigate = useNavigate();
 
   return (
     

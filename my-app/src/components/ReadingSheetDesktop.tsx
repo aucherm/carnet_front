@@ -3,20 +3,16 @@ import NavBar from "../components/NavBar";
 import ReadingSheetForm from "./ReadingSheetForm";
 import type { ReadingSheetProps } from "../types/ReadingSheetProps";
 
-export default function ReadingSheetDesktop(
-  props: ReadingSheetProps,
-) {
+export default function ReadingSheetDesktop(props: ReadingSheetProps) {
   return (
     <Layout>
       <NavBar />
       <div className="min-h-screen px-8 py-10">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-mint border-2 border-gray-800 rounded-[32px] overflow-hidden shadow-2xl grid grid-cols-[420px_1fr]">
-
+          <div className="bg-mint border-2 border-gray-800 rounded-4xl overflow-hidden shadow-2xl grid grid-cols-[420px_1fr]">
             {/* LEFT PANEL */}
 
-            <div className="border-r-2 border-gray-800 bg-orange/10 p-10 flex flex-col items-center justify-center">
-              
+            <div className="border-r-2 border-gray-800 bg-green/50 p-10 flex flex-col items-center justify-center">
               {/* COVER */}
 
               {props.form.cover ? (
@@ -49,7 +45,7 @@ export default function ReadingSheetDesktop(
                     uppercase
                     tracking-widest
                     text-sm
-                    bg-white/50
+                    bg-mint
                   "
                 >
                   No Cover
@@ -88,7 +84,6 @@ export default function ReadingSheetDesktop(
 
             <div className="p-12 flex items-center">
               <div className="w-full max-w-2xl mx-auto">
-
                 {/* HEADER */}
 
                 <div className="mb-10">
@@ -97,9 +92,7 @@ export default function ReadingSheetDesktop(
                   </p>
 
                   <h2 className="text-5xl font-black uppercase tracking-wider leading-none">
-                    {props.isEditing
-                      ? "Modifier"
-                      : "Nouvelle fiche"}
+                    {props.form.title || "Titre du livre"}
                   </h2>
                 </div>
 

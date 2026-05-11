@@ -106,7 +106,7 @@ export function useReadingSheet() {
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erreur inconnue");
     } finally {
-      setLoading(false);Reading
+      setLoading(false);
     }
   };
 

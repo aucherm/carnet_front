@@ -27,7 +27,7 @@ export default function ReadingSheetForm({
         className="w-full text-center font-black font-heading tracking-widest uppercase text-2xl mb-5"
       />
 
-      <div className="flex gap-3 mb-4">
+      <div className="mb-4">
         <div className="flex-1 flex flex-col gap-3">
           <div>
             <label className="text-xs text-gray-600 mb-1 block">
@@ -54,20 +54,6 @@ export default function ReadingSheetForm({
               className="bg-white w-full border border-black rounded px-2 py-1 text-sm"
             />
           </div>
-        </div>
-
-        <div className="w-24 h-32 border border-black rounded bg-gray-50 overflow-hidden flex items-center justify-center shrink-0">
-          {form.cover ? (
-            <img
-              src={form.cover}
-              alt="cover"
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <span className="text-xs text-gray-400 text-center px-1">
-              Cover
-            </span>
-          )}
         </div>
       </div>
 
