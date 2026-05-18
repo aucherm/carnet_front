@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { GiBookshelf } from "react-icons/gi";
+import { FaRegCheckSquare } from "react-icons/fa";
 
 export default function BottomNav() {
   return (
@@ -43,6 +44,19 @@ export default function BottomNav() {
               style={isActive ? { backgroundColor: "var(--color-orange)" } : {}}
             >
               <FaPlus />
+            </span>
+          )}
+        </NavLink>
+          <NavLink
+          to="/to-read"
+          className="flex flex-col items-center text-black"
+        >
+          {({ isActive }) => (
+            <span
+              className="flex items-center justify-center w-17 h-17 rounded-full text-5xl"
+              style={isActive ? { backgroundColor: "var(--color-orange)" } : {}}
+            >
+              <FaRegCheckSquare />
             </span>
           )}
         </NavLink>

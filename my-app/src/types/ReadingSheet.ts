@@ -1,6 +1,6 @@
 export interface ReadingSheet {
   idReadingSheet: string;
-  status: "to_read" | "reading" | "finished";
+  status: "TO_READ" | "READING" | "FINISHED";
   grade: number | null;
   review: string | null;
   quote: string | null;

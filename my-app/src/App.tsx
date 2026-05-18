@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import BookShelf from "./pages/Bookshelf";
 import ReadingSheetContainer from "./components/ReadingSheetContainer";
+import ToReadPage from "./pages/ToReadPage";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Route path="/bookshelf" element={<BookShelf />} />
       <Route path="/reading-sheet" element={<ReadingSheetContainer />} />
       <Route path="/reading-sheet/:id" element={<ReadingSheetContainer />} />
+      <Route path="/to-read" element={<ToReadPage />} />
     </Routes>
   );
 }

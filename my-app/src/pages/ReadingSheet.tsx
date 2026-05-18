@@ -16,7 +16,7 @@ const EMPTY = {
   author: "",
   isbn: "",
   cover: "",
-  status: "to_read",
+  status: "TO_READ" as "TO_READ" | "READING" | "FINISHED",
   grade: 0,
   review: "",
   quote: "",
@@ -100,17 +100,16 @@ export default function ReadingSheet() {
 
   return (
     <Layout>
-       <NavBar></NavBar>
-            <div className="md:hidden">
-            <Logo />
-            </div>
+      <NavBar></NavBar>
+      <div className="md:hidden">
+        <Logo />
+      </div>
       <div className="flex justify-center items-center py-6">
         <div className="bg-mint rounded-xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
           <div className="flex justify-between items-center px-5 pt-5"></div>
 
           <form onSubmit={handleSubmit} className="px-5 pb-6 mt-4">
-         
-                     {error && <p className="text-red-500 text-xs mb-3">{error}</p>}
+            {error && <p className="text-red-500 text-xs mb-3">{error}</p>}
             <input
               name="title"
               value={form.title}
@@ -170,9 +169,9 @@ export default function ReadingSheet() {
                 onChange={handleChange}
                 className="bg-white w-full border border-black rounded px-2 py-1 text-sm focus:outline-none focus:border-gray-600"
               >
-                <option value="to_read">À lire</option>
-                <option value="reading">En cours</option>
-                <option value="finished">Terminé</option>
+                <option value="TO_READ">À lire</option>
+                <option value="READING">En cours</option>
+                <option value="FINISHED">Terminé</option>
               </select>
             </div>
 

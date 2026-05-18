@@ -24,7 +24,7 @@ export default function ReadingSheetForm({
         onChange={handleChange}
         required
         placeholder="Titre du livre *"
-        className="w-full text-center font-black font-heading tracking-widest uppercase text-2xl mb-5"
+        className="w-full text-center font-black font-heading tracking-widest uppercase text-2xl md:text-5xl mb-5"
       />
 
       <div className="mb-4">
@@ -43,9 +43,7 @@ export default function ReadingSheetForm({
             />
           </div>
           <div>
-            <label className="text-xs text-gray-600 mb-1 block">
-              ISBN
-            </label>
+            <label className="text-xs text-gray-600 mb-1 block">ISBN</label>
 
             <input
               name="isbn"
@@ -66,9 +64,9 @@ export default function ReadingSheetForm({
           onChange={handleChange}
           className="bg-white w-full border border-black rounded px-2 py-1 text-sm"
         >
-          <option value="to_read">À lire</option>
-          <option value="reading">En cours</option>
-          <option value="finished">Terminé</option>
+          <option value="TO_READ">À lire</option>
+          <option value="READING">En cours</option>
+          <option value="FINISHED">Terminé</option>
         </select>
       </div>
 
@@ -84,7 +82,7 @@ export default function ReadingSheetForm({
           }))
         }
       />
-<div className="mb-3">
+      <div className="mb-3">
         <label className="text-xs text-gray-600 mb-1 block">Avis</label>
 
         <textarea
@@ -97,9 +95,7 @@ export default function ReadingSheetForm({
       </div>
 
       <div className="mb-4">
-        <label className="text-xs text-gray-600 mb-1 block">
-          Citation.s
-        </label>
+        <label className="text-xs text-gray-600 mb-1 block">Citation.s</label>
 
         <textarea
           name="quote"

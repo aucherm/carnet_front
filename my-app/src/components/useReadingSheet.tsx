@@ -13,7 +13,7 @@ const EMPTY: ReadingSheetFormData = {
   author: "",
   isbn: "",
   cover: "",
-  status: "to_read",
+  status: "TO_READ",
   grade: 0,
   review: "",
   quote: "",

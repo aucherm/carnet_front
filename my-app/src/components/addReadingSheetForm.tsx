@@ -12,59 +12,153 @@ const EMPTY = {
   author: "",
   isbn: "",
   cover: "",
-  status: "to_read",
+  status: "TO_READ" as "TO_READ" | "READING" | "FINISHED",
   grade: "",
   review: "",
   quote: "",
 };
 
-export default function AddReadingSheetForm({ userId, onAdded }: Props) {
+export default function AddReadingSheetForm({
+  userId,
+  onAdded,
+}: Props) {
+
   const [form, setForm] = useState(EMPTY);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+
+  const [error, setError] =
+    useState<string | null>(null);
+
+  const [loading, setLoading] =
+    useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    e: React.ChangeEvent<
+      HTMLInputElement |
+      HTMLSelectElement |
+      HTMLTextAreaElement
+    >
+  ) => {
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    setForm((f) => ({
+      ...f,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
+
     e.preventDefault();
+
     setError(null);
     setLoading(true);
+
     try {
-      const sheet = await addReadingSheetWithBook(userId, {
-        title: form.title,
-        author: form.author,
-        isbn: form.isbn,
-        cover: form.cover,
-        status: form.status,
-        grade: form.grade ? parseFloat(form.grade) : null,
-        review: form.review,
-        quote: form.quote,
-      });
+
+      const sheet =
+        await addReadingSheetWithBook(userId, {
+          title: form.title,
+          author: form.author,
+          isbn: form.isbn,
+          cover: form.cover,
+          status: form.status,
+          grade: form.grade
+            ? parseFloat(form.grade)
+            : null,
+          review: form.review,
+          quote: form.quote,
+        });
+
       onAdded(sheet);
+
       setForm(EMPTY);
+
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Erreur inconnue");
+
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Erreur inconnue"
+      );
+
     } finally {
+
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 400 }}>
+
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 8,
+        maxWidth: 400,
+      }}
+    >
+
       <h3>Ajouter une fiche de lecture</h3>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {error && (
+        <p style={{ color: "red" }}>
+          {error}
+        </p>
+      )}
 
       <h4>Le livre</h4>
-      <input name="title" placeholder="Titre *" value={form.title} onChange={handleChange} required />
-      <input name="author" placeholder="Auteur *" value={form.author} onChange={handleChange} required />
-      <input name="isbn" placeholder="ISBN *" value={form.isbn} onChange={handleChange} required />
-      <input name="cover" placeholder="URL de couverture" value={form.cover} onChange={handleChange} />
-      <select name="status" value={form.status} onChange={handleChange}>
-        <option value="to_read">À lire</option>
-        <option value="reading">En cours</option>
-        <option value="finished">Terminé</option>
+
+      <input
+        name="title"
+        placeholder="Titre *"
+        value={form.title}
+        onChange={handleChange}
+        required
+      />
+
+      <input
+        name="author"
+        placeholder="Auteur *"
+        value={form.author}
+        onChange={handleChange}
+        required
+      />
+
+      <input
+        name="isbn"
+        placeholder="ISBN *"
+        value={form.isbn}
+        onChange={handleChange}
+        required
+      />
+
+      <input
+        name="cover"
+        placeholder="URL de couverture"
+        value={form.cover}
+        onChange={handleChange}
+      />
+
+      <select
+        name="status"
+        value={form.status}
+        onChange={handleChange}
+      >
+
+        <option value="TO_READ">
+          À lire
+        </option>
+
+        <option value="READING">
+          En cours
+        </option>
+
+        <option value="FINISHED">
+          Terminé
+        </option>
+
       </select>
 
       <input
@@ -78,12 +172,31 @@ export default function AddReadingSheetForm({ userId, onAdded }: Props) {
         onChange={handleChange}
       />
 
-      <textarea name="review" placeholder="Critique..." value={form.review} onChange={handleChange} rows={3} />
-      <textarea name="quote" placeholder="Citation favorite..." value={form.quote} onChange={handleChange} rows={2} />
+      <textarea
+        name="review"
+        placeholder="Critique..."
+        value={form.review}
+        onChange={handleChange}
+        rows={3}
+      />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Ajout..." : "Ajouter la fiche"}
+      <textarea
+        name="quote"
+        placeholder="Citation favorite..."
+        value={form.quote}
+        onChange={handleChange}
+        rows={2}
+      />
+
+      <button
+        type="submit"
+        disabled={loading}
+      >
+        {loading
+          ? "Ajout..."
+          : "Ajouter la fiche"}
       </button>
+
     </form>
   );
 }

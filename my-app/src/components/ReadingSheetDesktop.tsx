@@ -55,28 +55,6 @@ export default function ReadingSheetDesktop(props: ReadingSheetProps) {
               {/* BOOK INFOS */}
 
               <div className="mt-8 text-center w-full">
-                <h1
-                  className="
-                    text-3xl
-                    font-black
-                    uppercase
-                    tracking-[0.2em]
-                    leading-tight
-                    wrap-break-word
-                  "
-                >
-                  {props.form.title || "Titre du livre"}
-                </h1>
-
-                <p className="mt-4 text-lg text-gray-700">
-                  {props.form.author || "Auteur.ice"}
-                </p>
-
-                {props.form.isbn && (
-                  <p className="mt-2 text-xs tracking-widest text-gray-500 uppercase">
-                    ISBN · {props.form.isbn}
-                  </p>
-                )}
               </div>
             </div>
 
@@ -90,10 +68,6 @@ export default function ReadingSheetDesktop(props: ReadingSheetProps) {
                   <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-3">
                     Reading Sheet
                   </p>
-
-                  <h2 className="text-5xl font-black uppercase tracking-wider leading-none">
-                    {props.form.title || "Titre du livre"}
-                  </h2>
                 </div>
 
                 {/* FORM */}

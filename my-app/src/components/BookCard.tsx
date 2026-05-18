@@ -6,8 +6,8 @@ interface Props {
 
 export default function BookCard({ title, cover, grade }: Props) {
   return (
-    <div className="flex flex-col items-center gap-1 md:gap-3">
-      <div className="w-38 h-55 rounded-lg overflow-hidden border border-gray-300 bg-gray-200">
+    <div className="flex flex-col bg-mint border-2 border-black rounded-2xl overflow-hidden items-center gap-1 md:gap-3">
+      <div className="w-full h-48 bg-gray-100">
         {cover ? (
           <img src={cover} alt={title} className="w-full h-full object-cover" />
         ) : (
@@ -16,9 +16,12 @@ export default function BookCard({ title, cover, grade }: Props) {
           </div>
         )}
       </div>
+      
+      
       <div className="flex gap-0.5">
+        
         {[1, 2, 3, 4, 5].map((s) => (
-          <span key={s} className="text-yellow-400 text-sm md:text-2xl">
+          <span key={s} className="text-green text-s md:text-2xl">
             {s <= (grade ?? 0) ? "★" : "☆"}
           </span>
         ))}

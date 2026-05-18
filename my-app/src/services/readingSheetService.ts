@@ -66,3 +66,19 @@ export async function deleteReadingSheet(id: string): Promise<void> {
   const res = await fetch(`/api/reading-sheets/${id}`, { method: "DELETE" });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
 }
+
+export async function fetchReadingSheetsByStatus(
+  userId: string,
+  status: "TO_READ" | "READING" | "FINISHED"
+): Promise<ReadingSheet[]> {
+
+  const res = await fetch(
+    `/api/reading-sheets/user/${userId}/status/${status}`
+  );
+
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+
+  return res.json();
+}
