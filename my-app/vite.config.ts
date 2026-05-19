@@ -9,7 +9,10 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     proxy: {
-       "/api": process.env.VITE_API_URL || "http://localhost:8081",
+      "/api": {
+        target: process.env.VITE_API_URL || "http://localhost:8081",
+        changeOrigin: true,
+      }
     },
   },
   build: { outDir: "build", sourcemap: true, minify: "terser" },

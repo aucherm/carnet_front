@@ -5,6 +5,7 @@ import BottomNav from "../components/BottomNav";
 import type { ReadingSheet } from "../types/ReadingSheet";
 import { fetchReadingSheetsByStatus } from "../services/readingSheetService";
 import Logo from "../components/Logo";
+import apiFetch from "../services/apiFetch"; // ← ajoute cet import
 
 export default function ToReadPage() {
   const [books, setBooks] = useState<ReadingSheet[]>([]);
@@ -14,10 +15,9 @@ export default function ToReadPage() {
   useEffect(() => {
     async function load() {
       try {
-        const userRes = await fetch("/api/users");
+        const userRes = await apiFetch("/api/users"); // ← remplace fetch
         const users = await userRes.json();
         const userId = users[0].idUser;
-
         const data = await fetchReadingSheetsByStatus(userId, "TO_READ");
         setBooks(data);
       } catch (err) {

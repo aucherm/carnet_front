@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import apiFetch from "../services/apiFetch"; // ← ajoute cet import
 import {
   addReadingSheetWithBook,
   deleteReadingSheet,
@@ -7,6 +8,7 @@ import {
   updateReadingSheet,
 } from "../services/readingSheetService";
 import type { ReadingSheetFormData } from "../types/ReadingSheetFormData";
+
 
 const EMPTY: ReadingSheetFormData = {
   title: "",
@@ -30,11 +32,11 @@ export function useReadingSheet() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetch("/api/users")
-      .then((r) => r.json())
-      .then((data) => setUserId(data[0].idUser));
-  }, []);
+useEffect(() => {
+  apiFetch("/api/users")  
+    .then((r) => r.json())
+    .then((data) => setUserId(data[0].idUser));
+}, []);
 
   useEffect(() => {
     if (!id) return;

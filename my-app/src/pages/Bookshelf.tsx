@@ -7,17 +7,18 @@ import Logo from "../components/Logo";
 import NavBar from "../components/NavBar";
 import type { ReadingSheet } from "../types/ReadingSheet";
 import { fetchReadingSheets } from "../services/readingSheetService";
+import apiFetch from "../services/apiFetch";
 
 export default function BookShelf() {
   const [sheets, setSheets] = useState<ReadingSheet[]>([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("/api/users")
-      .then((r) => r.json())
-      .then((data) => fetchReadingSheets(data[0].idUser))
-      .then(setSheets);
-  }, []);
+ useEffect(() => {
+  apiFetch("/api/users")
+    .then((r) => r.json())
+    .then((data) => fetchReadingSheets(data[0].idUser))
+    .then(setSheets);
+}, []);
 
   return (
     <Layout>
