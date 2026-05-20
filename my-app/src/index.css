@@ -3,10 +3,12 @@
 
 @theme {
     --color-orange: #FFD6BA;
-    --color-white: #FAF9F9;
+    --color-white: #FBFAF9; 
     --color-mint: #E2F3EF;
     --color-green: #89B0AE;
     --color-grey: #2C2F3A;
 
     --font-heading: Amatic SC, sans-serif;
 }
+
+/* #FAF9F9; */ 

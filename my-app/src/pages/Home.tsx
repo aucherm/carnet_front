@@ -1,23 +1,15 @@
 import Layout from "../components/Layout";
 import BottomNav from "../components/BottomNav";
-import Logo from "../components/Logo";
 import NavBar from "../components/NavBar";
 
 export default function Home() {
-
   return (
-    
     <Layout>
-      <NavBar></NavBar>
-      <div className="md:hidden">
-      <Logo />
-      </div>
+      <NavBar />
+      <BottomNav /> 
       <div className="flex justify-center min-h-[calc(100vh-60px)] p-6 md:flex-col">
-        <div className="bg-white text-gray-900 rounded-3xl  w-full ">
-          {/* Header */}
+        <div className="bg-white text-gray-900 rounded-3xl w-full">
           <div className="flex justify-between items-center px-5"></div>
-
-          {/* Illustration */}
           <div className="flex justify-center">
             <img
               src="/pile.png"
@@ -26,10 +18,8 @@ export default function Home() {
               className="object-contain"
             />
           </div>
-
-          {/* Texte */}
           <div className="px-6 pb-10 text-center">
-            <h1 className="text-3xl font-black mb-4 ">Hello !</h1>
+            <h1 className="text-3xl font-black mb-4">Hello !</h1>
             <p className="text-xl text-gray-600 leading-relaxed md:max-w-md mx-auto">
               Un livre ouvert, c'est un monde de plus qui s'offre à toi. Plonge
               dans tes lectures, note tes ressentis, et laisse ton carnet
@@ -38,9 +28,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
-      <BottomNav />
     </Layout>
-    
   );
 }

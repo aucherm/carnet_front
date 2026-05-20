@@ -1,11 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { GiBookshelf } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa";
-import Logo from "./Logo";
 import { FaRegCheckSquare } from "react-icons/fa";
+import { IoLogOutOutline } from "react-icons/io5";
+import Logo from "./Logo";
+import { useAuth } from "../context/AuthContext";
 
 export default function NavBar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <nav className="hidden md:flex justify-around py-4 px-6 border-b border-gray-700">
       <div className="flex items-center w-full">
@@ -15,9 +25,7 @@ export default function NavBar() {
             to="/"
             className={({ isActive }) =>
               `flex items-center gap-2 text-xs tracking-widest uppercase font-semibold transition-colors px-4 py-2 rounded-4xl ${
-                isActive
-                  ? "text-black bg-orange"
-                  : "text-gray-500 hover:bg-green"
+                isActive ? "text-black bg-orange" : "text-gray-500 hover:bg-green"
               }`
             }
           >
@@ -26,11 +34,9 @@ export default function NavBar() {
           </NavLink>
           <NavLink
             to="/bookshelf"
-             className={({ isActive }) =>
+            className={({ isActive }) =>
               `flex items-center gap-2 text-xs tracking-widest uppercase font-semibold transition-colors px-4 py-2 rounded-4xl ${
-                isActive
-                  ? "text-black bg-orange"
-                  : "text-gray-500 hover:bg-green"
+                isActive ? "text-black bg-orange" : "text-gray-500 hover:bg-green"
               }`
             }
           >
@@ -39,31 +45,35 @@ export default function NavBar() {
           </NavLink>
           <NavLink
             to="/reading-sheet"
-           className={({ isActive }) =>
+            className={({ isActive }) =>
               `flex items-center gap-2 text-xs tracking-widest uppercase font-semibold transition-colors px-4 py-2 rounded-4xl ${
-                isActive
-                  ? "text-black bg-orange"
-                  : "text-gray-500 hover:bg-green"
+                isActive ? "text-black bg-orange" : "text-gray-500 hover:bg-green"
               }`
             }
           >
             <FaPlus className="text-2xl" />
             Reading Sheet
           </NavLink>
-
           <NavLink
             to="/to-read"
-           className={({ isActive }) =>
+            className={({ isActive }) =>
               `flex items-center gap-2 text-xs tracking-widest uppercase font-semibold transition-colors px-4 py-2 rounded-4xl ${
-                isActive
-                  ? "text-black bg-orange"
-                  : "text-gray-500 hover:bg-green"
+                isActive ? "text-black bg-orange" : "text-gray-500 hover:bg-green"
               }`
             }
           >
             <FaRegCheckSquare className="text-2xl" />
             Pile à lire
           </NavLink>
+
+          {/* Bouton déconnexion */}
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-xs tracking-widest uppercase font-semibold transition-colors px-4 py-2 rounded-4xl text-gray-500 hover:bg-green"
+          >
+            <IoLogOutOutline className="text-2xl" />
+            Déconnexion
+          </button>
         </div>
       </div>
     </nav>

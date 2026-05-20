@@ -8,8 +8,8 @@ import {
   deleteReadingSheet,
 } from "../services/readingSheetService";
 import BottomNav from "../components/BottomNav";
-import Logo from "../components/Logo";
 import NavBar from "../components/NavBar";
+import { fetchMe } from "../services/userService";
 
 const EMPTY = {
   title: "",
@@ -34,10 +34,8 @@ export default function ReadingSheet() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/api/users")
-      .then((r) => r.json())
-      .then((data) => setUserId(data[0].idUser));
-  }, []);
+  fetchMe().then((user) => setUserId(user.idUser));
+}, []);
 
   useEffect(() => {
     if (id) {
@@ -97,18 +95,12 @@ export default function ReadingSheet() {
       setLoading(false);
     }
   };
-
-  return (
+return (
     <Layout>
-      <NavBar></NavBar>
-      <div className="md:hidden">
-        <Logo />
-      </div>
-      <div className="flex justify-center items-center py-6">
+      <NavBar />
+      <div className="min-h-screen flex justify-center items-start py-6 pb-28 md:pb-6">
         <div className="bg-mint rounded-xl border-2 border-gray-800 w-80 shadow-xl overflow-hidden">
-          <div className="flex justify-between items-center px-5 pt-5"></div>
-
-          <form onSubmit={handleSubmit} className="px-5 pb-6 mt-4">
+          <form onSubmit={handleSubmit} className="px-5 py-6">
             {error && <p className="text-red-500 text-xs mb-3">{error}</p>}
             <input
               name="title"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import apiFetch from "../services/apiFetch"; // ← ajoute cet import
+import { fetchMe } from "../services/userService";
 import {
   addReadingSheetWithBook,
   deleteReadingSheet,
@@ -8,7 +8,6 @@ import {
   updateReadingSheet,
 } from "../services/readingSheetService";
 import type { ReadingSheetFormData } from "../types/ReadingSheetFormData";
-
 
 const EMPTY: ReadingSheetFormData = {
   title: "",
@@ -20,27 +19,23 @@ const EMPTY: ReadingSheetFormData = {
   review: "",
   quote: "",
 };
+
 export function useReadingSheet() {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const isEditing = !!id;
-
   const [form, setForm] = useState<ReadingSheetFormData>(EMPTY);
   const [hovered, setHovered] = useState(0);
   const [userId, setUserId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-useEffect(() => {
-  apiFetch("/api/users")  
-    .then((r) => r.json())
-    .then((data) => setUserId(data[0].idUser));
-}, []);
+  useEffect(() => {
+    fetchMe().then((user) => setUserId(user.idUser));
+  }, []);
 
   useEffect(() => {
     if (!id) return;
-
     fetchReadingSheetById(id).then((sheet) => {
       setForm({
         title: sheet.book.title,
@@ -54,38 +49,24 @@ useEffect(() => {
       });
     });
   }, [id]);
+
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setForm((f) => ({
-      ...f,
-      [e.target.name]: e.target.value,
-    }));
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!isEditing && !userId) return;
-
     setError(null);
     setLoading(true);
-
     try {
       if (isEditing && id) {
-        await updateReadingSheet(id, {
-          ...form,
-          grade: form.grade || null,
-        });
+        await updateReadingSheet(id, { ...form, grade: form.grade || null });
       } else {
-        await addReadingSheetWithBook(userId!, {
-          ...form,
-          grade: form.grade || null,
-        });
+        await addReadingSheetWithBook(userId!, { ...form, grade: form.grade || null });
       }
-
       navigate("/bookshelf");
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erreur inconnue");
@@ -93,15 +74,11 @@ useEffect(() => {
       setLoading(false);
     }
   };
+
   const handleDelete = async () => {
     if (!id) return;
-
-    if (!window.confirm("Supprimer cette fiche de lecture ?")) {
-      return;
-    }
-
+    if (!window.confirm("Supprimer cette fiche de lecture ?")) return;
     setLoading(true);
-
     try {
       await deleteReadingSheet(id);
       navigate("/bookshelf");
