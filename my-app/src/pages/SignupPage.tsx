@@ -38,71 +38,63 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-6">
-      <div className="w-full max-w-md">
-        <h1 className="font-heading text-center font-black tracking-widest uppercase text-5xl mb-8">
+    <div className="min-h-screen flex items-center justify-center bg-mint px-4">
+      <div className="bg-white rounded-2xl shadow-sm p-10 w-full max-w-sm">
+
+        <div className="flex justify-center gap-1.5 mb-6">
+          <span className="w-2 h-2 rounded-full bg-orange" />
+          <span className="w-2 h-2 rounded-full bg-green" />
+          <span className="w-2 h-2 rounded-full border border-green" />
+        </div>
+
+        <h2 className="font-heading text-5xl font-bold text-grey text-center leading-tight mb-1">
           Inscription
-        </h1>
+        </h2>
+        <p className="text-center text-green text-sm tracking-wide mb-8">✦✦✦</p>
 
         {error && (
-          <p className="text-red-500 text-sm text-center mb-4">{error}</p>
+          <p className="bg-orange text-grey text-sm text-center rounded-lg px-3 py-2 mb-5">
+            {error}
+          </p>
         )}
 
         <div className="flex flex-col gap-4">
-          <input
-            name="firstName"
-            placeholder="Prénom"
-            value={form.firstName}
-            onChange={handleChange}
-            className="border-2 border-black rounded-full px-5 py-3 text-sm font-semibold outline-none focus:border-green"
-          />
-          <input
-            name="lastName"
-            placeholder="Nom"
-            value={form.lastName}
-            onChange={handleChange}
-            className="border-2 border-black rounded-full px-5 py-3 text-sm font-semibold outline-none focus:border-green"
-          />
-          <input
-            name="mail"
-            type="email"
-            placeholder="Email"
-            value={form.mail}
-            onChange={handleChange}
-            className="border-2 border-black rounded-full px-5 py-3 text-sm font-semibold outline-none focus:border-green"
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Mot de passe"
-            value={form.password}
-            onChange={handleChange}
-            className="border-2 border-black rounded-full px-5 py-3 text-sm font-semibold outline-none focus:border-green"
-          />
-          <input
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirmer le mot de passe"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            className="border-2 border-black rounded-full px-5 py-3 text-sm font-semibold outline-none focus:border-green"
-          />
-
-          <button
-            onClick={handleSubmit}
-            disabled={loading}
-            className="w-full border-2 border-black rounded-full py-3 text-sm font-bold uppercase tracking-wider bg-orange hover:bg-green transition-colors mt-2"
-          >
-            {loading ? "Inscription..." : "S'inscrire"}
-          </button>
-
-          <p className="text-center text-sm text-gray-500 mt-2">
-            Déjà un compte ?{" "}
-            <NavLink to="/login" className="font-bold underline">
-              Se connecter
-            </NavLink>
-          </p>
+          {[
+            { name: "firstName", label: "Prénom", type: "text" },
+            { name: "lastName", label: "Nom", type: "text" },
+            { name: "mail", label: "Email", type: "email" },
+            { name: "password", label: "Mot de passe", type: "password" },
+            { name: "confirmPassword", label: "Confirmer le mot de passe", type: "password" },
+          ].map(({ name, label, type }) => (
+            <div key={name}>
+              <label className="block text-xs font-semibold text-green uppercase tracking-widest mb-1.5">
+                {label}
+              </label>
+              <input
+                name={name}
+                type={type}
+                value={form[name as keyof typeof form]}
+                onChange={handleChange}
+                className="w-full border-[1.5px] border-green rounded-xl px-4 py-2.5 text-grey bg-white placeholder:text-green/50 focus:outline-none focus:border-green transition-colors"
+              />
+            </div>
+          ))}
         </div>
+
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="w-full mt-6 bg-grey text-orange font-heading text-2xl font-bold rounded-xl py-3 tracking-wide hover:bg-green hover:text-white active:scale-[0.98] transition-all"
+        >
+          {loading ? "Inscription..." : "S'inscrire →"}
+        </button>
+
+        <p className="text-center text-sm text-gray-500 mt-6">
+          Déjà un compte ?{" "}
+          <NavLink to="/login" className="font-bold text-green underline">
+            Se connecter
+          </NavLink>
+        </p>
       </div>
     </div>
   );
