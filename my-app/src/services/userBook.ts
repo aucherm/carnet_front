@@ -1,14 +1,11 @@
 import type { Book } from "../types/Book";
+import apiFetch from "./apiFetch";
 
 export async function fetchCurrentBook(): Promise<Book> {
-  const res = await fetch("/api/books");
-
-  if (!res.ok) {
-    throw new Error(`HTTP error: ${res.status}`);
-  }
+  const res = await apiFetch("/api/books");
+  if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
 
   let books: Book[];
-
   try {
     books = await res.json();
   } catch {
